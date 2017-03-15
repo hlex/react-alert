@@ -106,11 +106,8 @@
     "webpack-hot-middleware": "^2.2.0",
     "semantic-release": "^6.3.2"
   },
-  "publishConfig": {
-    "access": "restricted"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hlex/react-alert-message.git"
+    "url": "https://github.com/hlex/react-alert.git"
   }
 }
