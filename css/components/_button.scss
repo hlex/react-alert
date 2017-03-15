@@ -72,6 +72,14 @@
     &:hover{background-color: $blue3;color: $color;}
     &:active, &.active{background-color: $blue1;}
   }
+  &.yellow{
+    $color: #fff;
+    color: $color;
+    background-color: $yellow;
+    &.disable, &:disabled{opacity: 0.3;cursor: no-drop;}
+    &:hover{background-color: $blue3;color: $color;}
+    &:active, &.active{background-color: $blue1;}
+  }
   &.gray{
     $color: #fff;
     color: $color;

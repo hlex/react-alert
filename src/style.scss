@@ -62,12 +62,23 @@ $borderPadding: 20px;
   z-index: 11;
   left: 0;
   right: 0;
-  top: 0;
+  top: -50%;
   background: #fff;
   padding: $borderPadding;
   box-shadow: 0 0 64px rgba(0, 0, 0, 0.34);
   font-weight: bold;
   color: #fff;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+  &.show {
+    top: 0;
+    opacity: 1;
+    visibility: visible; 
+  }
   .close {
     position: absolute;
     top: 15px;
@@ -107,6 +118,9 @@ $borderPadding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     margin-bottom: $borderPadding;
+  }
+  .headline > i {
+    margin-right: 10px;
   }
   .subheadline {
     color: $roseRed;
@@ -155,6 +169,7 @@ $borderPadding: 20px;
 }
 
 .react-alert-message > .box-alert-message .button {
+  min-width: 135px;
   border: 3px solid #B71C1C;
   border-radius: 3px;
   background: #B71C1C;
@@ -164,43 +179,43 @@ $borderPadding: 20px;
   cursor: pointer;
   padding: 10px 32px;
   display: inline-block;
-  // text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
   outline: none;
   position: relative;
   font-size: $fontSizeContent;
-  &.focus {
+  color: #fff;
+  &:focus {
 
   }
-  &.hover {
-    background: darker($red2, 10);
+  &:hover {
+    border-color: $red2;
+    background: $red2;
   }
-  &.active {
+  &:active {
 
   }
 }
 
+$arrowSize: 6px;
 .react-alert-message > .box-alert-message .button {
+  // position: absolute;
+  // top: 16px;
+  // left: 15px;
+  .icon {
+    display: inherit;
+    height: 7px;
+    margin-right: 10px;
+  }
   .arrow-up {
-    position: absolute;
-    top: 16px;
-    left: 15px;
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #fff;
+    border-left: $arrowSize solid transparent;
+    border-right: $arrowSize solid transparent;
+    border-bottom: $arrowSize solid #fff;
   }
   .arrow-down {
-    position: absolute;
-    top: 16px;
-    left: 15px;
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #fff;
+    border-left: $arrowSize solid transparent;
+    border-right: $arrowSize solid transparent;
+    border-top: $arrowSize solid #fff;
   }
 }
 

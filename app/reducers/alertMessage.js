@@ -1,5 +1,5 @@
 const initialState = {
-  open: true,
+  open: false,
   type: 'DEFAULT', // DEFAULT, ERROR, WARNING, SUCCESS, SYSTEM_ERROR, LOADING
   trxId: '',
   processInstance: '',

@@ -5,11 +5,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import ReactAlertMessage from 'react-alert-message';
-import 'react-alert-message/style.scss'; // Import css
+import 'react-alert-message/style.scss';
+// import 'react-alert-message/dist/style.css';
 
 // State
 function mapStateToProps(state) {
   return {
+    alertMessage: state.alertMessage,
     todoLists: state.todo.todoLists,
     sortByStatus: state.todo.sortByStatus
   }
@@ -33,7 +35,23 @@ const actions = {
     type: 'UPDATE_TODO_STATUS',
     id,
     status,
-  })
+  }),
+  showAlertMessage: (type, timeout) => ({
+    type: 'OPEN_ALERT_MESSAGE',
+    message: {
+      type: type,
+      trxId: '1',
+      processInstance: 'localhost:3001',
+      message: {
+        th: 'นายมณฑิษ',
+        en: 'Mr.Mondit',
+        technical: 'ccbs error 500.',
+      },
+    },
+  }),
+  closeAlertMessage: () => ({
+    type: 'CLOSE_ALERT_MESSAGE',
+  }),
 }
 
 function mapDispatchToProps(dispatch) {
@@ -46,37 +64,18 @@ export default class App extends React.Component {
     todoLists: React.PropTypes.array,
     sortByStatus: React.PropTypes.string,
   }
-
-  addTodo = (e) => {
-    /**
-     * If user Enter
-     */
-    if (e.keyCode === 13 && e.target.value !== '') {
-      const newTodo = {
-        id: Date.now(),
-        label: e.target.value,
-        status: 'Active',
-      }
-      this.props.actions.addTodo(newTodo)
-      /**
-       * Clear value
-       * @type {String}
-       */
-      e.target.value = '';
+  handleShowAlertMessage = (type, timeout = '') => {
+    const { actions } = this.props;
+    actions.showAlertMessage(type);
+    if (timeout !== '') {
+      setTimeout(() => {
+        actions.closeAlertMessage();
+      }, timeout * 1000);
     }
   }
-
-  sortTodoStatus = (status) => {
-    this.props.actions.sortTodoStatus(status)
-  }
-
-  updateTodoStatus = (id, status) => {
-    this.props.actions.updateTodoStatus(id, status)
-  }
-
   render() {
-    const { todoLists, sortByStatus, actions } = this.props;
-
+    const { alertMessage, todoLists, sortByStatus, actions } = this.props;
+    console.log('App:props', this.props);
     /**
      * Sort Todo list by status
      * @type {Array}
@@ -89,37 +88,32 @@ export default class App extends React.Component {
     return (
       <div className="container">
         <ReactAlertMessage
-          open
-          type="LOADING"
-          message={{
-            th: 'ไม่สามารถใช้หมายเลข 0881859067 ได้ เนื่องจากติดสัญญากับยริษัท RMV fksajfkasfjas jfkdsakfjaksdjfkjas fjskafkasjdfjk ajskfsfafh afadsh',
-            en: 'Cannot use this subscriber because ..... fsjfjsadjkfjsdkj fjsadfjkasjfjasdkfjksd fskafaskdjfasdjfsd fkjsadfjsakdf',
-            technical: 'CCB_INT error with 500 [url]:http:219.321.312.22/get/customer .... flksjkfsjdjfa fsakfkj fdasf askdfajs fksafa fjsdafkadsjkfjsadj fjsdafjkasjfjasdkfjaksjf faksdjfasdkjfaksdj',
-          }}
-          trxId="7312xwe23Xduros"
-          processInstance="local"
+          open={alertMessage.open}
+          type={alertMessage.type}
+          message={alertMessage.message}
+          trxId={alertMessage.trxId}
+          processInstance={alertMessage.processInstance}
+          closeAlertMessage={actions.closeAlertMessage}
         />
         <br />
         <br />
         <br />
-        <div className="box-todo">
-          <div className="box-input">
-            <div className="wrap-form-input">
-              <input
-                onKeyUp={(e) => this.addTodo(e)}
-                type="text"
-                className="form-input"
-                placeholder="What needs to be done?"
-              />
-            </div>
+        <div className="row">
+          <div className="D-3 T-6 M-6 SM-12">
+             <button className="button red" onClick={() => this.handleShowAlertMessage('ERROR')}>Show ERROR</button>
           </div>
-          {
-            todoListBySort.map((todo) => <TodoItem todo={todo} deleteTodo={() => actions.deleteTodo(todo.id)} updateTodoStatus={this.updateTodoStatus} />)
-          }
-          <br />
-          <ButtonSortBy sortByStatus={sortByStatus} label="All" onClickButton={this.sortTodoStatus} />
-          <ButtonSortBy sortByStatus={sortByStatus} label="Active" onClickButton={this.sortTodoStatus} />
-          <ButtonSortBy sortByStatus={sortByStatus} label="Completed" onClickButton={this.sortTodoStatus} />
+          <div className="D-3 T-6 M-6 SM-12">
+             <button className="button yellow" onClick={() => this.handleShowAlertMessage('WARNING')}>Show WARNING</button>
+          </div>
+          <div className="D-3 T-6 M-6 SM-12">
+            <button className="button green" onClick={() => this.handleShowAlertMessage('SUCCESS')}>Show SUCCESS</button>
+          </div>
+          <div className="D-3 T-6 M-6 SM-12">
+            <button className="button grey" onClick={() => this.handleShowAlertMessage('LOADING')}>Show LOADING</button>
+          </div>
+          <div className="D-3 T-6 M-6 SM-12">
+            <button className="button grey" onClick={() => this.handleShowAlertMessage('LOADING', 3)}>Show LOADING 3s</button>
+          </div>          
         </div>
         <br />
         <br />

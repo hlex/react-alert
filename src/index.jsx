@@ -9,21 +9,26 @@ class ReactAlertMessage extends React.Component {
       en: PropTypes.string,
       technical: PropTypes.string,
     }).isRequired,
+    textOnButton: PropTypes.string,
     trxId: PropTypes.string,
     processInstance: PropTypes.string,
+    textOnButtonShow: PropTypes.string,
+    textOnButtonHide: PropTypes.string,
     closeAlertMessage: PropTypes.func.isRequired,
   };
   static defaultProps = {
     open: true,
     type: 'ERROR',
-    trxId: 'undefined',
+    trxId: 'please send "trxId" props',
     message: {
-      th: 'undefined',
-      en: 'undefined',
-      technical: 'undefined',
+      th: 'กรุณาระบุข้อความภาษาไทยใน message.th',
+      en: 'please define english message in message.en',
+      technical: 'กรุณาระบุข้อความเทคนิค ใน message.technical',
     },
-    processInstance: 'local',
-    closeAlertMessage: () => alert('please set your closeAlertMessage function'),
+    textOnButtonShow: 'Hide',
+    textOnButtonHide: 'Show',
+    processInstance: 'please send "processInstance" props',
+    closeAlertMessage: () => alert('please set your function in "closeAlertMessage" props'),
   }
   state = {
     showDetail: false,
@@ -42,13 +47,13 @@ class ReactAlertMessage extends React.Component {
     let icon = '';
     switch (type) {
       case 'ERROR':
-        icon = '';
+        icon = <i className="fa fa-exclamation-circle" />;
         break;
       case 'LOADING':
         icon = <span className="loading loading-style-normal red" />;
         break;
       case 'SUCCESS':
-        icon = <i className="fa fa-check" />;
+        icon = <i className="fa fa-check-circle" />;
         break;
       case 'WARNING':
         icon = <i className="fa fa-exclamation-triangle" />;
@@ -61,27 +66,28 @@ class ReactAlertMessage extends React.Component {
   }
   render() {
     const { showDetail } = this.state;
-    const { open, type, trxId, processInstance, message } = this.props;
-    console.log('BetterAlertMessage', this.props);
+    const { open, type, trxId, processInstance, message: { th, en, technical }, textOnButtonShow, textOnButtonHide } = this.props;
     const showBottom = type === 'ERROR' || type === 'WARNING';
     return (
       <div className={`react-alert-message ${type}`}>
-        <div className={`box-alert-message animated ${open ? 'fadeInDown' : 'fadeOutUp'}`}>
+        <div className={`box-alert-message ${open ? 'show' : ''}`}>
           <a onClick={this.handleClickCloseButton} className="close" />
           <div className="detail">
             <span className="headline">{this.renderIcon(type)} {type}</span>
             <hr />
             <div className="subheadline">
-              <div className="message"><div className="title">EN</div>{`${message.en}`}</div>
-              <div className="message"><div className="title">TH</div>{`${message.th}`}</div>
+              <div className="message"><div className="title">EN</div>{`${en}`}</div>
+              <div className="message"><div className="title">TH</div>{`${th}`}</div>
             </div>
             {
               showBottom &&
               <div className="bottom">
                 <span>{`trx-id = ${trxId}, process-instance = ${processInstance}`}</span>
                 <button className="button" onClick={this.handleToggleDetail}>
-                  <span className={`${showDetail ? 'arrow-up' : 'arrow-down'}`}></span>
-                  Technical Message
+                  <span className={`icon ${showDetail ? 'arrow-up' : 'arrow-down'}`}></span>
+                  {
+                    showDetail ? textOnButtonShow : textOnButtonHide
+                  }
                 </button>
               </div>
             }
@@ -89,7 +95,7 @@ class ReactAlertMessage extends React.Component {
           {
             showDetail &&
               <div className="more-detail content">
-                <p>{`${message.technical}`}</p>
+                <p>{`${technical}`}</p>
               </div>
           }
         </div>
