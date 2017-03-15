@@ -41,6 +41,9 @@ class ReactAlertMessage extends React.Component {
   renderIcon = (type) => {
     let icon = '';
     switch (type) {
+      case 'ERROR':
+        icon = '';
+        break;
       case 'LOADING':
         icon = <span className="loading loading-style-normal red" />;
         break;
