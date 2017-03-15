@@ -1,0 +1,352 @@
+// ----- styles -------- //
+
+// font size
+$fontSizeHeadline: 20px;
+$fontSizeSubheadline: 16px;
+$fontSizeContent: 14px;
+
+// paletes
+$cream: #eedda5;
+
+//red
+$alertRed: #f06060;
+$red2: #d00000;
+$redMaterial: #fa5456;
+$redPastel: #f44336;
+$roseRed: #FFD8DB;
+
+
+//green
+$green1: #009833;
+$green2: #009833;
+$green3: #009833;
+$green4: #ECF9F4;
+
+// loading
+$base-line-height: 24px;
+$white: rgb(255,255,255);
+$off-white: rgba($white, 0.2);
+$spin-duration: 1s;
+$pulse-duration: 750ms;
+
+.color-green{
+	color: $green2;
+}
+
+//yellow
+$yellow: #ff9900;
+.color-yellow{
+	color: $yellow;
+}
+
+// ---------- COMPONENT ------------------- //
+
+$borderPadding: 20px;
+
+.react-alert-message {
+  .more-detail {
+    margin:20px -19px -19px;
+    background: white;
+    color:#787878;
+    padding: 19px;
+    font-weight: normal;
+    font-size: 12px;
+    max-height: 500px;
+    overflow: scroll;
+    h4 { color: #333; font-weight: bold; }
+  }
+}
+
+.react-alert-message > .box-alert-message {
+  position: fixed;
+  z-index: 11;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #fff;
+  padding: $borderPadding;
+  box-shadow: 0 0 64px rgba(0, 0, 0, 0.34);
+  font-weight: bold;
+  color: #fff;
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 25px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.react-alert-message > .box-alert-message .detail {
+  hr {
+    border-color: #f27b79;
+  }
+  .headline {
+    display: block;
+    font-size: $fontSizeHeadline;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: $borderPadding;
+  }
+  .subheadline {
+    color: $roseRed;
+    font-size: $fontSizeSubheadline;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .subheadline > .message {
+    padding: 0 30px;
+    margin: 15px 0;
+    position: relative;
+  }
+  .subheadline > .message > .title {
+    opacity: 0;
+    min-width: 42px;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    background: #DE413F;
+    border-radius: 3px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  .bottom {
+    text-align: center;
+    position: relative;
+  }
+  .bottom > span {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    font-weight: 100;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .react-alert-message > .box-alert-message .detail .bottom > span {
+    top: 0;
+    right: 0;
+    margin: 15px 0;
+    position: relative;
+    display: block;
+  }
+}
+
+.react-alert-message > .box-alert-message .button {
+  border: 3px solid #B71C1C;
+  border-radius: 3px;
+  background: #B71C1C;
+  font-family: inherit;
+  font-size: inherit;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 10px 32px;
+  display: inline-block;
+  // text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  outline: none;
+  position: relative;
+  font-size: $fontSizeContent;
+  &.focus {
+
+  }
+  &.hover {
+    background: darker($red2, 10);
+  }
+  &.active {
+
+  }
+}
+
+.react-alert-message > .box-alert-message .button {
+  .arrow-up {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+  }
+  .arrow-down {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+  }
+}
+
+.react-alert-message > .box-alert-message .icon-arrow-up {
+  content: "\e003";
+}
+
+
+// ---------- TYPE ALERT ------------------- //
+
+.react-alert-message.DEFAULT{
+  .box-alert-message{
+    background: #4D82D6;
+  }
+  .box-alert-message .close{
+    color: #fff;
+    opacity: 1;
+  }
+}
+.react-alert-message.ERROR{
+  .box-alert-message{
+    background: $redPastel;
+    color: #fff;
+  }
+  .box-alert-message .close{
+    color: #fff;
+    opacity: 1;
+  }
+}
+.react-alert-message.WARNING{
+  .box-alert-message{
+    background: $yellow;
+    color: #fff;
+  }
+  .box-alert-message .close{
+    color: #fff;
+    opacity: 1;
+  }
+  .box-alert-message .detail hr {
+    border-color: #FFCC80;
+  }
+  .box-alert-message .detail .subheadline {
+    color: #FFF3E0;
+  }
+  .box-alert-message .button{
+    border-color: #F57C00;
+    background-color: #F57C00;
+  }
+}
+.react-alert-message.SUCCESS{
+  .box-alert-message{
+    background: #57BF57;
+  }
+  .box-alert-message .detail hr {
+    border-color: #A5D6A7;
+  }
+  .box-alert-message .detail .subheadline {
+    color: #E8F5E9;
+  }
+  .box-alert-message .button{
+    border-color: #388E3C;
+    background-color: #388E3C;
+  }
+}
+.react-alert-message.LOADING{
+  .box-alert-message{
+    background: #eee;
+  }
+	.box-alert-message .close{
+    color: #000;
+    opacity: 1;
+  }
+  .box-alert-message .detail hr {
+    border-color: #ffffff;
+  }
+  .box-alert-message .detail .headline {
+    color: #616161;
+    margin-bottom: $borderPadding;
+  }
+  .box-alert-message .detail .subheadline {
+    color: #616161;
+  }
+	.loading {
+		display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+	}
+  .loading-style-normal {
+    border-radius: 50%;
+    width: $base-line-height;
+    height: $base-line-height;
+    border: .25rem solid $off-white;
+    border-top-color: $red2; // $white;
+    animation: reactAlertMessageSpin $spin-duration infinite linear;
+    &--double {
+      border-style: double;
+      border-width: .5rem;
+    }
+    &.red {
+      border-color: $red2;
+      border-top-color: #fff;
+	  }
+    &.medium {
+      border-size: .3rem;
+      width: $base-line-height + 14px;
+      height: $base-line-height + 14px;
+    }
+  }
+}
+
+.react-alert-message.SYSTEM_ERROR{
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  background: $red2;
+  h4{
+    font-size: 30px;
+  }
+  .D-2{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .box-alert-message{
+    top: 40%;
+    bottom: initial;
+    border-radius: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    box-shadow: none;
+    background: $red2;
+    color: #fff;
+    .close{display: none;}
+  }
+}
+
+@keyframes reactAlertMessageSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
