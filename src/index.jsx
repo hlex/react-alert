@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 class ReactAlertMessage extends React.Component {
   static propTypes = {
+    debug: PropTypes.bool, 
     open: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
     message: PropTypes.shape({
@@ -18,7 +19,8 @@ class ReactAlertMessage extends React.Component {
     closeAlertMessage: PropTypes.func.isRequired,
   };
   static defaultProps = {
-    open: true,
+    debug: false,
+    open: false,
     type: 'ERROR',
     trxId: 'please send "trxId" props',
     message: {
@@ -68,8 +70,9 @@ class ReactAlertMessage extends React.Component {
   }
   render() {
     const { showDetail } = this.state;
-    const { open, type, trxId, processInstance, message: { th, en, technical }, topic, textOnButtonShow, textOnButtonHide } = this.props;
+    const { debug, open, type, trxId, processInstance, message: { th, en, technical }, topic, textOnButtonShow, textOnButtonHide } = this.props;
     const showBottom = type === 'ERROR' || type === 'WARNING';
+    if (debug) console.log('ReactAlertMessage: props = ', this.props);
     return (
       <div className={`react-alert-message ${type}`}>
         <div className={`box-alert-message ${open ? 'show' : ''}`}>
