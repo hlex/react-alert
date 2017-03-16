@@ -76,8 +76,8 @@ class ReactAlertMessage extends React.Component {
             <span className="headline">{this.renderIcon(type)} {type}</span>
             <hr />
             <div className="subheadline">
-              <div className="message"><div className="title">EN</div>{`${en}`}</div>
               <div className="message"><div className="title">TH</div>{`${th}`}</div>
+              <div className="message"><div className="title">EN</div>{`${en}`}</div>
             </div>
             {
               showBottom &&
