@@ -12,6 +12,7 @@ class ReactAlertMessage extends React.Component {
     textOnButton: PropTypes.string,
     trxId: PropTypes.string,
     processInstance: PropTypes.string,
+    topic: PropTypes.string,
     textOnButtonShow: PropTypes.string,
     textOnButtonHide: PropTypes.string,
     closeAlertMessage: PropTypes.func.isRequired,
@@ -25,6 +26,7 @@ class ReactAlertMessage extends React.Component {
       en: 'please define english message in message.en',
       technical: 'กรุณาระบุข้อความเทคนิค ใน message.technical',
     },
+    topic: 'รายละเอียด',
     textOnButtonShow: 'Hide',
     textOnButtonHide: 'Show',
     processInstance: 'please send "processInstance" props',
@@ -66,7 +68,7 @@ class ReactAlertMessage extends React.Component {
   }
   render() {
     const { showDetail } = this.state;
-    const { open, type, trxId, processInstance, message: { th, en, technical }, textOnButtonShow, textOnButtonHide } = this.props;
+    const { open, type, trxId, processInstance, message: { th, en, technical }, topic, textOnButtonShow, textOnButtonHide } = this.props;
     const showBottom = type === 'ERROR' || type === 'WARNING';
     return (
       <div className={`react-alert-message ${type}`}>
@@ -76,6 +78,7 @@ class ReactAlertMessage extends React.Component {
             <span className="headline">{this.renderIcon(type)} {type}</span>
             <hr />
             <div className="subheadline">
+              <div className="topic">{topic}</div>
               <div className="message"><div className="title">TH</div>{`${th}`}</div>
               <div className="message"><div className="title">EN</div>{`${en}`}</div>
             </div>
