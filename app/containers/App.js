@@ -40,8 +40,8 @@ const actions = {
     type: 'OPEN_ALERT_MESSAGE',
     message: {
       type: type,
-      trxId: '1',
-      processInstance: 'localhost:3001',
+      trxId: '9NCCZVH7ZD3SW',
+      processInstance: 'tmsapnpr1 (instance: SFF_node1)Technical Message',
       message: {
         th: 'นายมณฑิษ',
         en: 'Mr.Mondit',

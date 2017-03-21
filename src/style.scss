@@ -134,12 +134,12 @@ $borderPadding: 20px;
     margin-bottom: 15px;
   }
   .subheadline > .message {
-    padding: 0 30px;
+    padding: 0 50px;
     margin: 15px 0;
     position: relative;
   }
   .subheadline > .message > .title {
-    opacity: 0;
+    // opacity: 0;
     min-width: 42px;
     color: #fff;
     position: absolute;
@@ -159,7 +159,7 @@ $borderPadding: 20px;
     right: 0;
     top: 12px;
     font-weight: 100;
-    font-size: 14px;
+    font-size: 11px;
   }
 }
 
@@ -167,9 +167,10 @@ $borderPadding: 20px;
   .react-alert-message > .box-alert-message .detail .bottom > span {
     top: 0;
     right: 0;
-    margin: 15px 0;
+    margin: 30px 0;
     position: relative;
     display: block;
+    font-size: 14px;
   }
 }
 
@@ -265,6 +266,9 @@ $arrowSize: 6px;
   .box-alert-message .detail .subheadline {
     color: #FFF3E0;
   }
+  .box-alert-message .detail .subheadline > .message > .title {
+    background-color: #F57C00;
+  }
   .box-alert-message .button{
     border-color: #F57C00;
     background-color: #F57C00;
@@ -279,6 +283,9 @@ $arrowSize: 6px;
   }
   .box-alert-message .detail .subheadline {
     color: #E8F5E9;
+  }
+  .box-alert-message .detail .subheadline > .message > .title {
+    background-color: #388E3C;
   }
   .box-alert-message .button{
     border-color: #388E3C;
@@ -312,7 +319,7 @@ $arrowSize: 6px;
     border-radius: 50%;
     width: $base-line-height;
     height: $base-line-height;
-    border: .25rem solid $off-white;
+    border: .15rem solid $off-white;
     border-top-color: $red2; // $white;
     animation: reactAlertMessageSpin $spin-duration infinite linear;
     &--double {

@@ -79,22 +79,27 @@ class ReactAlertMessage extends React.Component {
           <a onClick={this.handleClickCloseButton} className="close" />
           <div className="detail">
             <span className="headline">{this.renderIcon(type)} {type}</span>
-            <hr />
-            <div className="subheadline">
-              <div className="topic">{topic}</div>
-              <div className="message"><div className="title">TH</div>{`${th}`}</div>
-              <div className="message"><div className="title">EN</div>{`${en}`}</div>
-            </div>
             {
-              showBottom &&
-              <div className="bottom">
-                <span>{`trx-id = ${trxId}, process-instance = ${processInstance}`}</span>
-                <button className="button" onClick={this.handleToggleDetail}>
-                  <span className={`icon ${showDetail ? 'arrow-up' : 'arrow-down'}`}></span>
-                  {
-                    showDetail ? textOnButtonShow : textOnButtonHide
-                  }
-                </button>
+              type !== 'LOADING' &&
+              <div className="main-content">
+                <hr />
+                <div className="subheadline">
+                  <div className="topic">{topic}</div>
+                  <div className="message"><div className="title">TH</div>{`${th}`}</div>
+                  <div className="message"><div className="title">EN</div>{`${en}`}</div>
+                </div>
+                {
+                  showBottom &&
+                  <div className="bottom">
+                    <span>{`trx-id = ${trxId}, process-instance = ${processInstance}`}</span>
+                    <button className="button" onClick={this.handleToggleDetail}>
+                      <span className={`icon ${showDetail ? 'arrow-up' : 'arrow-down'}`}></span>
+                      {
+                        showDetail ? textOnButtonShow : textOnButtonHide
+                      }
+                    </button>
+                  </div>
+                }
               </div>
             }
           </div>
