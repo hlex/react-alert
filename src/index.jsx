@@ -16,6 +16,7 @@ class ReactAlertMessage extends React.Component {
     topic: PropTypes.string,
     textOnButtonShow: PropTypes.string,
     textOnButtonHide: PropTypes.string,
+    showEnglishBeforeThai: PropTypes.bool,
     closeAlertMessage: PropTypes.func.isRequired,
   };
   static defaultProps = {
@@ -32,6 +33,7 @@ class ReactAlertMessage extends React.Component {
     textOnButtonShow: 'Hide',
     textOnButtonHide: 'Show',
     processInstance: 'please send "processInstance" props',
+    showEnglishBeforeThai: false,
     closeAlertMessage: () => alert('please set your function in "closeAlertMessage" props'),
   }
   state = {
