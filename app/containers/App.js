@@ -43,8 +43,8 @@ const actions = {
       trxId: '9NCCZVH7ZD3SW',
       processInstance: 'tmsapnpr1 (instance: SFF_node1)Technical Message',
       message: {
-        th: 'นายมณฑิษ',
-        en: 'Mr.Mondit',
+        th: 'นายมณฑิษ ธรรมนิรมล',
+        en: 'Mr.Mondit Thumniramon',
         technical: 'ccbs error 500.',
       },
     },
