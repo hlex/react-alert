@@ -54,6 +54,10 @@
       "command": "rimraf dist"
     }
   },
+  "peerDependencies": { 
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.3.15",
