@@ -1,2 +1,5 @@
-export ReactAlertMessage from './ReactAlertMessage'
-export reactAlertMessageReducer from './reactAlertMessageReducer'
+import reactAlertMessageReducer from './reactAlertMessageReducer';
+import ReactAlertMessage from './ReactAlertMessage';
+// export { reactAlertMessageReducer };
+// export default ReactAlertMessage;
+export { ReactAlertMessage as default, reactAlertMessageReducer };

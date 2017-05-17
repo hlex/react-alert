@@ -10,6 +10,7 @@ import 'react-alert-message/style.scss';
 
 // State
 function mapStateToProps(state) {
+  console.log('@Appstate', state);
   return {
     alertMessage: state.alertMessage,
     todoLists: state.todo.todoLists,
@@ -113,7 +114,7 @@ export default class App extends React.Component {
           </div>
           <div className="D-3 T-6 M-6 SM-12">
             <button className="button grey" onClick={() => this.handleShowAlertMessage('LOADING', 3)}>Show LOADING 3s</button>
-          </div>          
+          </div>
         </div>
         <br />
         <br />
